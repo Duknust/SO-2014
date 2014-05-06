@@ -1,0 +1,37 @@
+#include <unistd.h>     /* chamadas ao sistema: defs e decls essenciais */
+int execl(const char *path, const char *arg0, ..., NULL);
+int execlp(const char *file, const char *arg0, ..., NULL);
+int execv(const char *path, char *const argv[]);
+int execvp(const char *file, char *const argv[]);
+
+o execlp so se pode usar se no momento que se esta a escrever o programa se consegue saber com quantos argumentos se vai executar o programa se nao estamos condenados ao execvp
+
+o exercicio do ls-l
+int main(){
+	execl("/bin/ls","/bin/ls","-l",NULL);
+}
+
+o p de execlp significa path e assim nao e preciso especificar o caminho ate ao executavel
+
+int main(){
+	execlp("ls","ls","-l",NULL);
+}
+
+o exec começa o programa a partir do seu main
+o exec substitui o codigo, dados e stack do programa que o esta a chamar
+tudo o que vem a seguir ao exec no codigo NAO VAI SER EXECUTADO!!
+
+
+int main(){
+	if(fork()==0){
+		execlp("ls","ls","-l",NULL);
+		_exit(EXIT_FAILURE);
+	}
+	return EXIT_SUCCESS;
+}
+
+ver o man 3 readline
+
+ver o man 3 h
+
+ver o man 3 history

@@ -1,0 +1,62 @@
+int main(){
+	char c;
+	while(read(0,&c,1)==1)
+		write(1,&c,1);
+	return 0;
+} //EXIT_SUCCESS
+
+int main(int argc, char * args[]){
+	int fd, i;
+	char c='a';
+	if(argc!=2){
+		sprintf(stderr,"%s:missing filename\nusage:%s<file>\n",argv[0],argv[0]; 
+		return 1;
+	}
+	fd = open(argv[1],O_CREAT|O_WRONLY|O_TRUNC,0666);
+	if(fd==-1) {
+		perror(argv[1]);
+		return 1;
+	}
+	for(i=0;i!=1024*1024*10;i++){
+		write(fd,&c,1);
+	}
+	close(fd);
+	return 0;
+}
+
+int main(int argc, char*args[]){
+	int ff, size = sizeof(argv[1]);
+	char* buffer = (char*)malloc(size);
+	while((n=read(0,buffer,size))>0)
+		write(1,buffer,n);
+	free(buffer);
+	return 0;
+}
+
+
+int readln(int fd, char* buffer, int nbyte){
+	int i,n=0;
+	for(i=0;i!=nbytes && (n=read(fd,buffer+i,1))==1 && buffer[i++]!='\n';);
+	return n==-1?-1:i;
+}
+
+int readln(int fd, void *buffer, int nbyte){
+	int i,n=0;
+	for(i=0;i!=nbytes && (n=read(fd,(char*)buffer+i,1))==1 && *((char*)buffer+i)!='\n';i++);
+
+int main(){
+	char line[1024], number[16];
+	int n, nl=1;
+	while((n=readln(0,line,sizeof(line)))>0){
+		sprintf(number,"%d/t",nl);
+		write(1,number,strlen(number));
+		write(1,line,n);
+		nl++;
+	}
+	return 0;
+}
+
+PARA O 7
+int readln(...){
+	static _charbuf[1024];
+	static int bufln=0;

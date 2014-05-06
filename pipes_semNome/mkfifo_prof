@@ -1,0 +1,10 @@
+int mkfifo(const char* filename, mode_t mode) -> open(filename, O_RDONLY) OU O_WDONLY)
+
+read/write
+close
+
+v -> fifo ->
+
+1) criar pipe com nome "fifo"
+2) le do stdin, repete para "fifo"
+3) le do "file", repete para stdout
