@@ -1,0 +1,53 @@
+#define _INCREMENTAR 1000
+#define _AGREGAR 1001
+
+int parsingMensagem(char* mensagem, char *localidade, char* path, int nOi){
+    int i=0, j=0, para=0;
+    int tipo=-1, nivelOrIncr=-1;
+    char tmp[256];
+    //char *localidade, *path;
+    
+    for(i=0,j=0; i<strlen(mensagem) && !para; i++,j++){
+        if(mensagem[i] != '|')
+            tmp[j]=mensagem[i];
+        else para=1;
+    }
+    tmp[j]='\0';
+    tipo = atoi(tmp);
+    
+    for(j=0,para=0; i<strlen(mensagem) && !para; i++,j++){
+        if(mensagem[i] != '|')
+            tmp[j]=mensagem[i];
+        else para=1;
+    }
+    
+    for(j=0,para=0; i<strlen(mensagem) && !para; i++,j++){
+        if(mensagem[i] != '|')
+            tmp[j]=mensagem[i];
+        else para=1;
+    }
+    nivelOrIncr = atoi(tmp);
+    
+    if(tipo==_AGREGAR){
+        for(j=0; i<strlen(mensagem); i++,j++){
+                tmp[j]=mensagem[i];
+        }
+        path = strdup(tmp);
+    }
+    
+    nOi=nivelOrIncr; //isto nao vai retornar por referencia
+    
+    return tipo;
+}
+
+int main(){
+    char* sms = "1000 | Braga,Braga,S.Vitor | 200";
+    char* localidade, *path;
+    int nOi;
+
+    parsingMensagem(sms,localidade,path,nOi);
+
+    printf("localidade: %s\n", localidade);
+    printf("path: %s\n", path);
+    printf("noi: %d", nOi);
+}

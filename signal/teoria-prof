@@ -1,0 +1,36 @@
+int kill(pid_t pid, sig_t signo);
+
+SIGINT
+SIGQUIT
+SIGSTOP *
+SIGCONT *
+SIGHUP
+SIGPIPE
+SIGKILL * -> matar MESMO
+SIGTERM -> "estou a avisar!"
+SIGUSR1 -> podemos dar o significado que quisermos
+SIGUSR2 -> "
+SIGALRM
+SIGCHLD 
+SIGSEGV -> segmentation fault
+
+sig_t signal(sig_t signo, sig_t handle)
+
+typedef void(*sig_t)(signo_t)
+
+-> Qualquer funcao que seja associada a um sinal tem de ter o prototipo
+	void f(signo_t signo){
+		puts("SIGINT");
+	}
+
+signal(SIGINT,f);
+
+unsigned alarm(unsigned secs); -> SIGALARM
+
+if(signal(SIGKILL,f)==(sig_t)-1) FUNCIONA XD
+
+if((int)signal(SIGKILL,f)==-1) TAMBEM FUNCIONA
+
+int pause(void);
+
+#include <signal.h>
